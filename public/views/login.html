@@ -1,0 +1,24 @@
+<div class="bg-wrapper">
+     <div class="form-wrapper">
+        <a class="logo-link" ui-sref="app">wokabula<span>r</span></a>
+        <img src="images/login.svg">
+
+       <span class="form-error" ng-show="errorResponse">{{errorMsg}}</span>
+
+        <form name="loginForm" novalidate ng-submit="loginUser()">
+            <label ng-show="loginForm.username.$error.required && !loginForm.username.$pristine" class="error-label">Username is required</label>
+            <input type="text" placeholder="Username" name="username" ng-model="loginData.username" required>
+
+            <label ng-show="loginForm.password.$error.required && !loginForm.password.$pristine" class="error-label">Password is required</label>
+            <input type="password" placeholder="Password" name="password" ng-model="loginData.password" required>
+
+            <button type="submit" ng-disabled="loginForm.$invalid" ng-class="{disabled : loginForm.$invalid}">Log in</button>
+
+        </form>
+
+        <span class="line"></span>
+        <h3>Don't have an account ?</h3>
+        <a ui-sref="app.register" class="signup-link">Sign Up !</a>
+
+    </div>
+</div>

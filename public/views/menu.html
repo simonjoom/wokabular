@@ -1,0 +1,31 @@
+<nav ng-class="{loggedIn : loggedIn, signInOut:!isHomePage}">
+    <div class="container clearfix">
+
+        <div class="nav-logo">
+            <a ui-sref="app" class="logo">wokabular</a>
+        </div>
+
+        <div class="nav-links">
+            <a href="#" class="home-link link" ng-hide="loggedIn">About</a>
+            <a href="#" class="home-link link" ng-hide="loggedIn">Contact</a>
+            <a class="link account-link name" ng-show="loggedIn">Welcome {{username}}</a>
+            <a href="#" class="link account-link" ng-show="loggedIn" ng-click="logoutUser()">Log out</a>
+        </div>
+        <!-- <div id="mobile-menu-btn"></div>
+        <div id="mobile-menu">
+            <a href="#" class="home-link menu-link" ng-hide="loggedIn">About</a>
+            <a href="#" class="home-link menu-link" ng-hide="loggedIn">Contact</a>
+            <a class="menu-link account-link name" ng-show="loggedIn">Welcome {{username}}</a>
+            <a href="#" class="menu-link account-link logout" ng-show="loggedIn" ng-click="logoutUser()">Log out</a>
+        </div> -->
+    </div>
+</nav>
+
+<div id="loading-screen">
+    <div id="loading-dots">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+    </div>
+</div>

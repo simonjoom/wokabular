@@ -1,0 +1,68 @@
+<div class="list-info">
+    <div class="container">
+            <div class="user-avatar">
+                <div class="user-avatar-img">
+                    <img src="images/login.svg">
+                </div>
+            </div>
+            <h1 class="user-name">{{fullname}}</h1>
+            <h3 class="user-place">Place, Country</h3>
+            <p class="user-about">Something about the user.....Functionality to be added soon.</p>
+
+        <div class="content-info">
+            <div class="content-details clearfix">
+                <div class="lists-info"><div>{{lists.length}}<br><span>lists</span></div></div>
+                <div class="words-info"><div>{{totalWords.length}}<br><span>words</span></div></div>
+            </div>
+        </div><!--/account-info-->
+    </div><!--/container-->
+</div><!--/user-info-->
+
+<div class="container">
+    <div class="lists-section clearfix">
+        <div class="lists-col-3">
+            <a class="lists-wrapper add-new-list" ng-click="openDialog()">
+                <h1>+</h1><p>Add new list</p>
+            </a>
+        </div>
+        <div class="lists-col-3" ng-repeat="list in lists">
+            <a ui-sref="app.list({listId:list._id})" class="lists-wrapper">
+                <div class="lists-wrapper-img"></div>
+                <div class="lists-wrapper-description">
+                    <div>
+                        <h2 class="list-desc-name">{{list.name}}</h2>
+                        <h4 class="list-desc-author">{{list.author}}</h4>
+                        <p class="list-desc-words">{{list.words.length}} words</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+
+    </div><!--/list-info-->
+</div><!--/container-->
+
+<div class="dialog-wrapper">
+    <div class="dialog-bg"></div>
+    <div class="dialog-box">
+
+        <span class="dialog-close"  ng-click="closeDialog()">+</span>
+
+        <h2 class="dialog-heading">Add new List</h2>
+
+        <form name="addNewListForm" novalidate ng-submit="addList()">
+            <label class="error-label" ng-show="addNewListForm.list.$error.required && !addNewListForm.list.$pristine">List name is required</label>
+            <label for="" class="dialog-label">List name</label>
+            <input type="text" class="dialog-input" name="list" ng-model="newList.name" required>
+
+            <label for="" class="dialog-label">Author</label>
+            <input type="text" class="dialog-input" name="author" ng-model="newList.author">
+
+            <div class="dialog-btn-grp">
+                <button type="submit" class="dialog-btn action" ng-disabled="addNewListForm.$invalid" ng-class="{disabled : addNewListForm.$invalid}">Add</button>
+                <a class="dialog-btn cancel"  ng-click="closeDialog()">cancel</a>
+            </div>
+        </form>
+
+    </div>
+</div>

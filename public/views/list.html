@@ -1,0 +1,99 @@
+<div class="list-info">
+    <div class="container">
+        <div class="list-wrapper">
+            <div class="list-cover">
+                <img src="" alt="" class="list-cover-img">
+            </div>
+            <div class="list-description">
+                <div>
+                    <h1 class="list-name">{{listInfo.name}}</h1>
+                    <h3 class="list-author">{{listInfo.author}}</h3>
+                    <p class="list-words">{{listInfo.words.length}} words</p>
+                </div>
+            </div>
+        </div><!--/List-wrapper-->
+
+        <div class="search-section">
+            <div class="search-wrapper clearfix">
+                <div class="search">
+                    <input type="text" placeholder="Search Words" ng-model="searchWord">
+                </div>
+                <div class="sort">
+                    <label>sort </label>
+                    <select>
+                        <option>---select---</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div><!--/container-->
+</div><!--/list-info-->
+
+<div class="container">
+    <div class="words-section clearfix">
+
+        <div class="word-col-3" ng-repeat="word in words | filter:searchWord">
+            <div class="word-wrapper">
+                    <h2 class="word">{{word.word}}</h2>
+                    <p class="word-desc">{{word.description}}</p>
+                    <h3 class="mneumonic">Mneumonic</h3>
+                    <h4 class="mneumonic-desc">{{word.mneumonic}}</h4>
+
+                    <div class="edit-btns">
+                        <div class="edit" ng-click="editWord($index)"><i class="fa fa-pencil"></i></div>
+                        <div class="delete" ng-click="deleteWord(word._id)"><i class="fa fa-trash"></i></div>
+                    </div>
+            </div>
+        </div>
+
+
+    </div><!--/list-info-->
+</div><!--/container-->
+<div class="addBtn" ng-click="openDialog()">+</div>
+<div class="dialog-wrapper" id="add-wrapper">
+    <div class="dialog-bg"></div>
+
+    <div class="dialog-box" id="add-word">
+        <span class="dialog-close"  ng-click="closeDialog()">+</span>
+        <h2 class="dialog-heading">Add word</h2>
+        <form name="addNewWordForm" novalidate ng-submit="addWord()">
+            <label class="error-label" ng-show="addNewWordForm.word.$error.required && !addNewWordForm.word.$pristine">Word is required</label>
+            <label for="" class="dialog-label">Word</label>
+            <input type="text" class="dialog-input" name="word" ng-model="newWord.word" required>
+
+            <label for="" class="dialog-label">Description</label>
+            <textarea class="dialog-textarea" name="description" ng-model="newWord.description"></textarea>
+
+            <label for="" class="dialog-label">Mneumonic</label>
+            <input type="text" class="dialog-input" name="mneumonic" ng-model="newWord.mneumonic">
+
+            <div class="dialog-btn-grp">
+                <button type="submit" class="dialog-btn action" ng-disabled="addNewWordForm.$invalid" ng-class="{disabled : addNewWordForm.$invalid}">Add</button>
+                <a class="dialog-btn cancel"  ng-click="closeDialog()">cancel</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div id="edit-wrapper" class="dialog-wrapper">
+    <div class="dialog-bg"></div>
+
+    <div id="edit-word" class="dialog-box">
+        <span class="dialog-close"  ng-click="closeEditDialog()">+</span>
+        <h2 class="dialog-heading">Edit Word</h2>
+        <form name="editWordForm" novalidate ng-submit="updateWord()">
+            <label class="error-label" ng-show="editWordForm.word.$error.required && !editWordForm.word.$pristine">Word is required</label>
+            <label for="" class="dialog-label">Word</label>
+            <input type="text" class="dialog-input" name="word" ng-model="oldWord.word" required>
+            <label for="" class="dialog-label">Description</label>
+            <textarea class="dialog-textarea" ng-model="oldWord.description"></textarea>
+            <label for="" class="dialog-label">Mneumonic</label>
+            <input type="text" class="dialog-input" ng-model="oldWord.mneumonic">
+            <div class="dialog-btn-grp">
+                <button type="submit" class="dialog-btn action" ng-disabled="editWordForm.$invalid" ng-class="{disabled : editWordForm.$invalid}">Update</button>
+                <a class="dialog-btn cancel" ng-click="closeEditDialog()">cancel</a>
+            </div>
+        </form>
+    </div>
+
+</div>

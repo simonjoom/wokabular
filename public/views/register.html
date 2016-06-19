@@ -1,0 +1,28 @@
+<div class="bg-wrapper-register">
+    <div class="form-wrapper">
+        <a ui-sref="app" class="logo-link">wokabula<span>r</span></a>
+        <img src="images/register.svg">
+        <span class="form-error" ng-show="errorResponse">{{errorMsg}}</span>
+        <form name="registerForm" novalidate ng-submit="registerUser()">
+            <div class="fullname">
+                <label ng-show="registerForm.firstname.$error.required && !registerForm.firstname.$pristine" class="error-label">*Firstname is required</label>
+                <div class="fname">
+                <input type="text" placeholder="Firstname" name="firstname" ng-model="registerData.firstname" required>
+                </div>
+                <div class="lname">
+                <input type="text" placeholder="Lastname" name="lastname" ng-model="registerData.lastname">
+                </div>
+            </div>
+            <label ng-show="registerForm.username.$error.required && !registerForm.username.$pristine" class="error-label">*Username is required</label>
+            <input type="text" placeholder="Username" name="username" ng-model="registerData.username" required>
+
+            <label ng-show="registerForm.password.$error.required && !registerForm.password.$pristine" class="error-label">*Password is required</label>
+            <input type="password" placeholder="Password" name="password "ng-model="registerData.password" required>
+
+            <button type="submit" ng-disabled="registerForm.$invalid" ng-class="{disabled : registerForm.$invalid}">Sign Up</button>
+        </form>
+        <span class="line"></span>
+        <h3>Already have an account ?</h3>
+        <a ui-sref="app.login" class="login-link">Log in</a>
+    </div>
+</div>
